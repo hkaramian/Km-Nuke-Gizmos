@@ -1,20 +1,26 @@
-# Km-Nuke-Gizmos
+## Km-Nuke-Gizmos
 
 
 
-## Km Auto Match Grade
-
-
-.
-
-## Km Sharpen
-
+### Km Easy Matchgrade
 
 
 .
 
+### Km Sharpen
 
-## Km Templates
+
+
+.
+
+### Km Quality Reduce
+
+
+
+.
+
+
+### Km Templates
 
 
 .
