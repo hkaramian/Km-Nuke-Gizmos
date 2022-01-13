@@ -1,0 +1,149 @@
+#! C:/Program Files/Nuke10.5v2/nuke-10.5.2.dll -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1936" h="1056" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="991"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1920" y="0" w="1920" h="1080" fullscreen="1" screen="1">
+        <splitter orientation="2">
+            <split size="797"/>
+            <splitter orientation="1">
+                <split size="538"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+                <split size="1378"/>
+                <splitter orientation="2">
+                    <split size="64"/>
+                    <dock id="" activePageId="Toolbar.1">
+                        <page id="Toolbar.1"/>
+                    </dock>
+                    <split size="729"/>
+                    <dock id="" activePageId="DAG.1" focus="true">
+                        <page id="DAG.1"/>
+                        <page id="DAG.2"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="279"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="DopeSheet.1"/>
+                <page id="Curve Editor.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name F:/KmWorks/KmTools/Gizmos/Github/Km-Nuke-Gizmos/Km_Easy_Matchgrade.nk
+ frame 6
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Group {
+ inputs 0
+ name Km_Easy_MatchGrade
+ help "COCO_MatchGrade 1.1\ncreated by Nicolas Leu\n© Nicolas Leu - 2016\nwww.nicolasleu.com\nmail@nicolasleu.com"
+ tile_color 0x5babffff
+ xpos -409
+ ypos -91
+ addUserKnob {20 Source}
+ addUserKnob {41 Source_Color l "Source Color" T Source_C.Source_Color}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 reverse T Grade1.reverse}
+ addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade1.black_clamp}
+ addUserKnob {41 white_clamp l "white clamp" -STARTLINE T Grade1.white_clamp}
+ addUserKnob {41 maskChannelInput l INVISIBLE +INVISIBLE T Grade1.maskChannelInput}
+ addUserKnob {41 maskChannelMask l mask T Grade1.maskChannelMask}
+ addUserKnob {41 inject -STARTLINE T Grade1.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Grade1.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Grade1.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Grade1.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Grade1.invert_unpremult}
+ addUserKnob {41 mix T Grade1.mix}
+ addUserKnob {20 Target}
+ addUserKnob {20 SingleFrameMode l "Single Frame Mode" n 1}
+ addUserKnob {41 Target_Gain l "Target Color" T Km_Target_Analyse.intensitydata}
+ addUserKnob {26 ""}
+ addUserKnob {20 endGroup_1 n -1}
+ addUserKnob {20 MultiFrameMode l "Multi Frames Mode" n 1}
+ MultiFrameMode 0
+ addUserKnob {41 Analyse_Target l "Analyse Target" T Km_Target_Analyse.go}
+ addUserKnob {22 Clean_Target l "Clean Target Analyse" -STARTLINE T "\nk = nuke.toNode('Km_Target_Analyse').knob('intensitydata')\nck = nuke.thisNode().knob('Target_Gain')\na = nuke.ask('Clear animations?')\n\nif a == True:\n\tif k.isAnimated() or ck.isAnimated():\n\t\tck.clearAnimated()\n\t\tk.clearAnimated()\n\t\tck.setValue((1,1,1,1))\n\t\tk.setValue((1,1,1,1))\n\telse:\n\t\tprint 'intensitydata not animated'\n\t\tpass\n\nelse:\n\tpass\n\n\n\n\n\n\n\n\n"}
+ addUserKnob {41 ROI_1 l "Region BBox" T Km_Target_Analyse.ROI}
+ addUserKnob {41 resetROI_1 l Reset -STARTLINE T Km_Target_Analyse.resetROI}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 Help_1 l Help}
+ addUserKnob {26 Help -STARTLINE T "For single frame matchgrade : \nSimply sample source and target by default\ncolor picker and put this node at the source pipe. \n\nFor multi frames : \nsample source by default color picker and\nconnect the target input to your target and\nset the bbox to area you want to sample.\nThen click on analyze button\nFinally put this node at the source pipe. \n\n- - - - - - - - - - - - - - - - - - "}
+ addUserKnob {26 _1 l ": : : " T "<a href=\"www.hkaramian.com\" style=\"text-decoration:none; color:green\">www.hkaramian.com</a>"}
+}
+ Input {
+  inputs 0
+  name Mask
+  xpos 560
+  ypos 90
+  number 1
+ }
+ Dot {
+  name Dot1
+  xpos 594
+  ypos 144
+ }
+ Input {
+  inputs 0
+  name Source
+  xpos 440
+  ypos 53
+ }
+ Grade {
+  inputs 1+1
+  white {{Km_Target_Analyse.intensitydata.r/Source_C.Source_Color.r} {Km_Target_Analyse.intensitydata.g/Source_C.Source_Color.g} {Km_Target_Analyse.intensitydata.b/Source_C.Source_Color.b} 0}
+  name Grade1
+  xpos 440
+  ypos 140
+ }
+ Output {
+  name Output1
+  xpos 440
+  ypos 240
+ }
+ Input {
+  inputs 0
+  name Target
+  xpos 200
+  ypos 53
+  number 2
+ }
+ CurveTool {
+  ROI {64 214 1984 1294}
+  autocropdata {-20000 -20000 -20000 -20000}
+  intensitydata {0 0 0 0}
+  name Km_Target_Analyse
+  xpos 200
+  ypos 140
+ }
+ NoOp {
+  inputs 0
+  name Source_C
+  xpos 196
+  ypos 229
+  addUserKnob {20 User}
+  addUserKnob {19 Source_Color l "Source Color"}
+  Source_Color {0 0 0 0}
+ }
+end_group
