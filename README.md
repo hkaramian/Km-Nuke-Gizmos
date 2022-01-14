@@ -9,7 +9,9 @@ Specially useful for match grade an element in light changing situations in mult
 .
 
 ### Km Sharpen
-Km Sharpen produces better results in sharpening. Because it applies the Nuke sharpen node on a logged plate.
+Km Sharpen produces better results in sharpening (Specially in dark areas). Because it applies the Nuke sharpen node on a logged plate.
+
+![Km_Sharpen](https://user-images.githubusercontent.com/93508495/149500216-a504fa32-f62a-4ab6-ba9f-f5d424d938e8.gif)
 
 
 .
