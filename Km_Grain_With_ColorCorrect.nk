@@ -1,0 +1,156 @@
+#! C:/Program Files/Nuke10.5v2/nuke-10.5.2.dll -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1936" h="1056" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1004" stretch="1"/>
+            <splitter orientation="2">
+                <split size="991"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+            <split size="868"/>
+            <splitter orientation="2">
+                <split size="991"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name F:/KmWorks/KmTools/Gizmos/Github/Km-Nuke-Gizmos/Km_Grain_With_ColorCorrect.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Group {
+ inputs 0
+ name Km_Grain_With_ColorCorrect
+ xpos -112
+ ypos -142
+ addUserKnob {20 Grain}
+ addUserKnob {41 seed T Grain2_1.seed}
+ addUserKnob {41 presets l "" -STARTLINE T Grain2_1.presets}
+ addUserKnob {26 "" l "@b;Size"}
+ addUserKnob {41 red_size l red T Grain2_1.red_size}
+ addUserKnob {41 green_size l green T Grain2_1.green_size}
+ addUserKnob {41 blue_size l blue T Grain2_1.blue_size}
+ addUserKnob {26 "" l "@b;Irregularity"}
+ addUserKnob {41 red_i l red T Grain2_1.red_i}
+ addUserKnob {41 green_i l green T Grain2_1.green_i}
+ addUserKnob {41 blue_i l blue T Grain2_1.blue_i}
+ addUserKnob {26 "" l "@b;Intensity"}
+ addUserKnob {41 red_m l red T Grain2_1.red_m}
+ addUserKnob {41 green_m l green T Grain2_1.green_m}
+ addUserKnob {41 blue_m l blue T Grain2_1.blue_m}
+ addUserKnob {41 black T Grain2_1.black}
+ addUserKnob {41 minimum T Grain2_1.minimum}
+ addUserKnob {26 "" l "@b;Mask"}
+ addUserKnob {41 maskgrain l "Apply only through alpha" -STARTLINE T Grain2_1.maskgrain}
+ addUserKnob {41 maskinvert l "Invert alpha" -STARTLINE T Grain2_1.maskinvert}
+ addUserKnob {20 ColorCorrect}
+ addUserKnob {41 channels T ColorCorrect1.channels}
+ addUserKnob {20 master l "@b;master" n 1}
+ addUserKnob {41 saturation T ColorCorrect1.saturation}
+ addUserKnob {41 contrast T ColorCorrect1.contrast}
+ addUserKnob {41 gamma T ColorCorrect1.gamma}
+ addUserKnob {41 gain T ColorCorrect1.gain}
+ addUserKnob {41 offset T ColorCorrect1.offset}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 shadows l "@b;shadows" n 1}
+ addUserKnob {41 shadows.saturation l saturation T ColorCorrect1.shadows.saturation}
+ addUserKnob {41 shadows.contrast l contrast T ColorCorrect1.shadows.contrast}
+ addUserKnob {41 shadows.gamma l gamma T ColorCorrect1.shadows.gamma}
+ addUserKnob {41 shadows.gain l gain T ColorCorrect1.shadows.gain}
+ addUserKnob {41 shadows.offset l offset T ColorCorrect1.shadows.offset}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 midtones l "@b;midtones" n 1}
+ addUserKnob {41 midtones.saturation l saturation T ColorCorrect1.midtones.saturation}
+ addUserKnob {41 midtones.contrast l contrast T ColorCorrect1.midtones.contrast}
+ addUserKnob {41 midtones.gamma l gamma T ColorCorrect1.midtones.gamma}
+ addUserKnob {41 midtones.gain l gain T ColorCorrect1.midtones.gain}
+ addUserKnob {41 midtones.offset l offset T ColorCorrect1.midtones.offset}
+ addUserKnob {20 "" n -1}
+ addUserKnob {20 highlights l "@b;highlights" n 1}
+ addUserKnob {41 highlights.saturation l saturation T ColorCorrect1.highlights.saturation}
+ addUserKnob {41 highlights.contrast l contrast T ColorCorrect1.highlights.contrast}
+ addUserKnob {41 highlights.gamma l gamma T ColorCorrect1.highlights.gamma}
+ addUserKnob {41 highlights.gain l gain T ColorCorrect1.highlights.gain}
+ addUserKnob {41 highlights.offset l offset T ColorCorrect1.highlights.offset}
+ addUserKnob {20 "" n -1}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 105
+  ypos -344
+ }
+ Dot {
+  name Dot84
+  xpos 139
+  ypos -304
+ }
+set N6d4e400 [stack 0]
+ Grain2 {
+  name Grain2_1
+  label "Kodak 5248"
+  xpos 36
+  ypos -313
+  black {0 0 0}
+  minimum {0 0 0}
+ }
+ Dot {
+  name Dot85
+  xpos -6
+  ypos -304
+ }
+push $N6d4e400
+ Dot {
+  name Dot1
+  xpos 139
+  ypos -242
+ }
+set N62570400 [stack 0]
+ Merge2 {
+  inputs 2
+  operation divide
+  name Merge50
+  xpos -40
+  ypos -245
+ }
+ ColorCorrect {
+  name ColorCorrect1
+  xpos -40
+  ypos -197
+ }
+push $N62570400
+ Merge2 {
+  inputs 2
+  operation multiply
+  name Merge42
+  xpos 105
+  ypos -197
+ }
+ Output {
+  name Output1
+  xpos 105
+  ypos -97
+ }
+end_group
