@@ -1,0 +1,93 @@
+#! C:/Program Files/Nuke10.5v2/nuke-10.5.2.dll -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1936" h="1056" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1004" stretch="1"/>
+            <splitter orientation="2">
+                <split size="991"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+            <split size="868"/>
+            <splitter orientation="2">
+                <split size="991"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "F:/KmWorks/KmTools/Gizmos/Github/Km-Nuke-Gizmos/Km Sharpen.nk"
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Group {
+ inputs 0
+ name Km_Sharpen
+ tile_color 0xff833aff
+ xpos -194
+ ypos -90
+ addUserKnob {20 User l "Km Sharpen"}
+ addUserKnob {41 channels T Sharpen1.channels}
+ addUserKnob {41 minimum T Sharpen1.minimum}
+ addUserKnob {41 maximum T Sharpen1.maximum}
+ addUserKnob {41 amount T Sharpen1.amount}
+ addUserKnob {41 size T Sharpen1.size}
+ addUserKnob {41 filter T Sharpen1.filter}
+ addUserKnob {41 quality l "" -STARTLINE T Sharpen1.quality}
+ addUserKnob {41 crop l "crop to format" -STARTLINE T Sharpen1.crop}
+ addUserKnob {26 mask}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Sharpen1.maskChannelMask}
+ addUserKnob {41 maskChannelInput l "" -STARTLINE T Sharpen1.maskChannelInput}
+ addUserKnob {41 inject -STARTLINE T Sharpen1.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Sharpen1.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Sharpen1.fringe}
+ addUserKnob {41 mix T Sharpen1.mix}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -37
+  ypos -215
+ }
+ Log2Lin {
+  operation lin2log
+  name Log2Lin1
+  xpos -37
+  ypos -176
+ }
+ Sharpen {
+  name Sharpen1
+  xpos -37
+  ypos -130
+ }
+ Log2Lin {
+  name Log2Lin2
+  xpos -37
+  ypos -78
+ }
+ Output {
+  name Output1
+  xpos -37
+  ypos 22
+ }
+end_group
