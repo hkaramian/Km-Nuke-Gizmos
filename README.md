@@ -6,9 +6,9 @@ Simply sample source and target and Done !
 
 Specially useful for match grade an element in light changing situations in multi frames. This gizmo analyzes the target and matches the source color to target automatically.
 
-<center>
+<p align="center">
 <a href="https://vimeo.com/666079223" target="_blank">Introduction and Tutorial video at vimeo</a>
-</center>
+</p>
 
 ----
 
