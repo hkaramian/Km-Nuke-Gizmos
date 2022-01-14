@@ -1,0 +1,98 @@
+#! C:/Program Files/Nuke10.5v2/nuke-10.5.2.dll -nx
+version 10.5 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1936" h="1056" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="991"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1920" y="0" w="1920" h="1080" fullscreen="1" screen="1">
+        <splitter orientation="2">
+            <split size="797"/>
+            <splitter orientation="1">
+                <split size="538"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+                <split size="1378"/>
+                <splitter orientation="2">
+                    <split size="64"/>
+                    <dock id="" activePageId="Toolbar.1">
+                        <page id="Toolbar.1"/>
+                    </dock>
+                    <split size="729"/>
+                    <dock id="" activePageId="DAG.1" focus="true">
+                        <page id="DAG.1"/>
+                        <page id="DAG.2"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="279"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="DopeSheet.1"/>
+                <page id="Curve Editor.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name F:/KmWorks/KmTools/Gizmos/Github/Km-Nuke-Gizmos/Km_Quality_Reduce.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Group {
+ inputs 0
+ name Km_Quality_Reduce
+ tile_color 0x644848ff
+ xpos -453
+ ypos -98
+ addUserKnob {20 User l "Km Quality Reduce"}
+ addUserKnob {41 scale l Quality T Transform1.scale}
+ addUserKnob {26 help l => T "Decrease value to reduce the quality"}
+ addUserKnob {26 site l :: T "<a href=\"www.hkaramian.com\" style=\"text-decoration:none; color:green\">www.hkaramian.com</a>"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -315
+  ypos -210
+ }
+ Transform {
+  center {1024 778}
+  name Transform1
+  xpos -315
+  ypos -171
+ }
+ Blur {
+  name Blur1
+  xpos -315
+  ypos -136
+ }
+ Transform {
+  scale {{Transform1.scale}}
+  center {1024 778}
+  invert_matrix true
+  name Transform2
+  xpos -315
+  ypos -89
+ }
+ Output {
+  name Output1
+  xpos -315
+  ypos 11
+ }
+end_group
