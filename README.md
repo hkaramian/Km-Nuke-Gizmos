@@ -16,7 +16,8 @@ Km Sharpen produces better results in sharpening. Because it applies the Nuke sh
 
 ### Km Quality Reduce
 It reduces the quality of the picture  (Down sampling).
-Sometimes we need to reduce the quality of a footage or cg render to match it with the plate.
+Sometimes we need to reduce the quality of a footage or cg render to match it with the plate
+.
 It's not like blur or defocus, It creates different results.
 
 ![Km_Quality_Reduce](https://user-images.githubusercontent.com/93508495/149486657-2f1c92de-a1be-430d-9924-d0d325edd8c3.jpg)
